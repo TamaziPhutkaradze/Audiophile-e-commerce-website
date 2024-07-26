@@ -8,14 +8,14 @@ export default function Header() {
   const [mobileNav, toggleMobileNav] = useCycle(false, true);
   return (
     <>
-      <div className="bg-black h-[90px] w-full flex items-center justify-between pr-6 pl-6">
-        <nav className=" sticky top-0 inset-x-0  ">
+      <div className="bg-black h-[90px] w-full flex items-center justify-between pr-6">
+        <nav className=" sticky top-0 inset-x-0">
           <div className="container mx-auto  flex items-center">
             <div>
               <motion.button
                 onClick={() => toggleMobileNav()}
                 animate={mobileNav ? "open" : "closed"}
-                className="flex flex-col space-y-1"
+                className="flex flex-col space-y-1 pl-6 "
               >
                 <motion.span
                   variants={{
@@ -53,9 +53,9 @@ export default function Header() {
               }}
               initial="closed"
               animate="open"
-              className="fixed bg-[#FFFFFF] top-[90px]  w-full "
+              className="fixed bg-[#FFFFFF] top-[90px] w-full"
             >
-              <div className="pt-[80px] pl-[24px] pr-[24px] h-[500px] pb-[35px] flex flex-col gap-[68px] overflow-y-auto z-10 ">
+              <div className="pt-[80px] pl-[24px] pr-[24px] h-[500px] pb-[35px] flex flex-col gap-[68px] overflow-y-auto z-20 ">
                 <div className="bg-[#F1F1F1] rounded-lg w-full flex flex-col items-center justify-center">
                   <img
                     src={HeadPhonesImg}
