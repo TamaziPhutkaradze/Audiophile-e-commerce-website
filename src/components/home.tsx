@@ -91,7 +91,7 @@ export default function Home() {
                 <h1 className="font-bold text-[28px] tracking-[2px] ">
                   ZX7 SPEAKER
                 </h1>
-                <button className="w-[160px] h-[48px] border-2 border-[#000000]">
+                <button className="w-[160px] h-[48px] border-2 border-[#000000] text-[13px] font-bold">
                   SEE PRODUCT
                 </button>
               </div>
@@ -105,8 +105,8 @@ export default function Home() {
           <div className="flex flex-col gap-6 rounded-md pb-[120px]">
             <img src={earphones} className="rounded-md" alt="" />
             <div className="bg-[#F1F1F1] rounded-lg w-full flex-col flex  gap-8 pt-[41px] pb-[41px] pl-6">
-              <h1>YX1 EARPHONES</h1>
-              <button className="w-[160px] h-[48px] border-2 border-[#000000]">
+              <h1 className="text-[28px] font-bold">YX1 EARPHONES</h1>
+              <button className="w-[160px] h-[48px] border-2 border-[#000000] font-bold text-[13px] tracking-[1px]">
                 SEE PRODUCT
               </button>
             </div>
