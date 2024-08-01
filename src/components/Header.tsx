@@ -8,7 +8,7 @@ export default function Header() {
   const [mobileNav, toggleMobileNav] = useCycle(false, true);
   return (
     <>
-      <div className="bg-black h-[90px] w-full flex items-center justify-between pr-6">
+      <div className="bg-black h-[90px] w-full flex items-center justify-between pr-6 border-b border-[#979797] border-opacity-[0.2]">
         <nav className=" sticky top-0 inset-x-0">
           <div className="container mx-auto  flex items-center">
             <div>

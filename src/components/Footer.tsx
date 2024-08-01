@@ -5,39 +5,45 @@ import instagram from "../assets/socialSites/instagram.svg";
 import HeadPhonesImg from "../assets/menu/headphones.svg";
 import speakersImg from "../assets/menu/speakers.svg";
 import earphonesImg from "../assets/menu/earphones.svg";
-export default function Footer() {
+export default function Footer(props: { locationPath: string }) {
   return (
     <>
       {" "}
-      {/* <div className="pt-[80px] pl-[24px] pr-[24px]  pb-[35px] flex flex-col gap-[68px] overflow-y-auto z-20 ">
-        <div className="bg-[#F1F1F1] rounded-lg w-full flex flex-col items-center justify-center">
-          <img src={HeadPhonesImg} alt="" className="relative bottom-[52px]" />
-          <div className="flex flex-col gap-[17px] pb-3 text-center">
-            <p>HEADPHONES</p>
-            <p>
-              Shop <span className="text-red-500">&#62;</span>
-            </p>
+      {props.locationPath !== "/" && (
+        <div className="pt-[80px] pl-[24px] pr-[24px]  pb-[35px] flex flex-col gap-[68px] overflow-y-auto z-20 ">
+          <div className="bg-[#F1F1F1] rounded-lg w-full flex flex-col items-center justify-center">
+            <img
+              src={HeadPhonesImg}
+              alt=""
+              className="relative bottom-[52px]"
+            />
+            <div className="flex flex-col gap-[17px] pb-3 text-center">
+              <p>HEADPHONES</p>
+              <p>
+                Shop <span className="text-red-500">&#62;</span>
+              </p>
+            </div>
+          </div>
+          <div className="bg-[#F1F1F1] rounded-lg w-full flex-col   flex items-center justify-center ">
+            <img src={speakersImg} alt="" className="relative bottom-[52px]" />
+            <div className="flex flex-col gap-[17px] pb-3 text-center">
+              <p>SPEAKERS</p>
+              <p>
+                Shop <span className="text-red-500">&#62;</span>
+              </p>
+            </div>
+          </div>{" "}
+          <div className="bg-[#F1F1F1] rounded-lg  flex-col   w-full  flex items-center justify-center ">
+            <img src={earphonesImg} alt="" className="relative bottom-[52px]" />
+            <div className="flex flex-col gap-[17px] pb-3 text-center">
+              <p>EARPHONES</p>
+              <p>
+                Shop <span className="text-red-500">&#62;</span>
+              </p>
+            </div>
           </div>
         </div>
-        <div className="bg-[#F1F1F1] rounded-lg w-full flex-col   flex items-center justify-center ">
-          <img src={speakersImg} alt="" className="relative bottom-[52px]" />
-          <div className="flex flex-col gap-[17px] pb-3 text-center">
-            <p>SPEAKERS</p>
-            <p>
-              Shop <span className="text-red-500">&#62;</span>
-            </p>
-          </div>
-        </div>{" "}
-        <div className="bg-[#F1F1F1] rounded-lg  flex-col   w-full  flex items-center justify-center ">
-          <img src={earphonesImg} alt="" className="relative bottom-[52px]" />
-          <div className="flex flex-col gap-[17px] pb-3 text-center">
-            <p>EARPHONES</p>
-            <p>
-              Shop <span className="text-red-500">&#62;</span>
-            </p>
-          </div>
-        </div>
-      </div> */}
+      )}
       <div className="pr-6 pl-6 flex flex-col gap-[40px]">
         <img src={FooterImg} className="rounded-md" />
         <div className="flex flex-col gap-8 text-center">

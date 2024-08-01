@@ -4,28 +4,34 @@ import earphonesImg from "../assets/menu/earphones.svg";
 import bigSpeakersImg from "../assets/home/mobile/image-speaker-zx9.png";
 import secondSpeaker from "../assets/home/mobile/image-speaker-zx7.jpg";
 import earphones from "../assets/home/mobile/image-earphones-yx1.jpg";
-
-export default function Home() {
+import { Link } from "react-router-dom";
+interface HomeProps {
+  setValue: (value: string) => void;
+  value: string;
+}
+export default function Home(props: HomeProps) {
   return (
     <>
-      <main className="relative z-[-1]">
-        <div className="bg-[url(./assets/home/mobile/image-header.jpg)] bg-cover bg-center  h-[600px]"></div>
+      <main>
+        <div className="z-[-10] relative">
+          <div className="bg-[url(./assets/home/mobile/image-header.jpg)] bg-cover bg-center  h-[600px]"></div>
 
-        <div className="absolute inset-0 flex top-[168px] justify-center">
-          <div className="pl-6 pr-6 z-10 flex flex-col gap-4 text-center w-[328px] h-[300px]">
-            <p className="text-[14px] tracking-[8px] text-[#6F6F6F]">
-              NEW PRODUCT
-            </p>
-            <p className="text-white leading-[40px] tracking-[1.5px] whitespace-pre-wrap text-fontSizeClamp	">
-              XX99 Mark II HeadphoneS
-            </p>
-            <p className="text-[15px] font-thin  text-[#6F6F6F]">
-              Experience natural, lifelike audio and exceptional build quality
-              made for the passionate music enthusiast.
-            </p>
-            <button className="mt-[8px] bg-[#D87D4A] w-[168px] h-[48px] m-auto text-center text-white font-bold">
-              SEE PRODUCT{" "}
-            </button>
+          <div className="absolute inset-0 flex top-[168px] justify-center">
+            <div className="pl-6 pr-6 z-10 flex flex-col gap-4 text-center w-[328px] h-[300px]">
+              <p className="text-[14px] tracking-[8px] text-[#6F6F6F]">
+                NEW PRODUCT
+              </p>
+              <p className="text-white leading-[40px] tracking-[1.5px] whitespace-pre-wrap text-fontSizeClamp	">
+                XX99 Mark II HeadphoneS
+              </p>
+              <p className="text-[15px] font-thin  text-[#6F6F6F]">
+                Experience natural, lifelike audio and exceptional build quality
+                made for the passionate music enthusiast.
+              </p>
+              <button className="mt-[8px] bg-[#D87D4A] w-[168px] h-[48px] m-auto text-center text-white font-bold">
+                SEE PRODUCT{" "}
+              </button>
+            </div>
           </div>
         </div>
         <div className="pt-[80px] pl-[24px] pr-[24px]  pb-[35px] flex flex-col gap-[68px] overflow-y-auto z-20 ">
@@ -37,27 +43,46 @@ export default function Home() {
             />
             <div className="flex flex-col gap-[17px] pb-3 text-center">
               <p>HEADPHONES</p>
-              <p>
-                Shop <span className="text-red-500">&#62;</span>
-              </p>
+              <Link to="/Device">
+                {" "}
+                <button
+                  onClick={() =>
+                    localStorage.setItem("device name", "headphones")
+                  }
+                >
+                  Shop <span className="text-red-500">&#62;</span>
+                </button>
+              </Link>
             </div>
           </div>
           <div className="bg-[#F1F1F1] rounded-lg w-full flex-col   flex items-center justify-center ">
             <img src={speakersImg} alt="" className="relative bottom-[52px]" />
             <div className="flex flex-col gap-[17px] pb-3 text-center">
               <p>SPEAKERS</p>
-              <p>
-                Shop <span className="text-red-500">&#62;</span>
-              </p>
+              <Link to="/Device">
+                <button
+                  onClick={() =>
+                    localStorage.setItem("device name", "speakers")
+                  }
+                >
+                  Shop <span className="text-red-500">&#62;</span>
+                </button>
+              </Link>
             </div>
           </div>{" "}
           <div className="bg-[#F1F1F1] rounded-lg  flex-col   w-full  flex items-center justify-center ">
             <img src={earphonesImg} alt="" className="relative bottom-[52px]" />
             <div className="flex flex-col gap-[17px] pb-3 text-center">
               <p>EARPHONES</p>
-              <p>
-                Shop <span className="text-red-500">&#62;</span>
-              </p>
+              <Link to="/Device">
+                <button
+                  onClick={() =>
+                    localStorage.setItem("device name", "earphones")
+                  }
+                >
+                  Shop <span className="text-red-500">&#62;</span>  
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -85,30 +110,32 @@ export default function Home() {
               </button>
             </div>
           </div>
-          <div className="relative w-full pb-8 ">
-            <div className=" justify-between flex">
-              <div className="absolute top-[101px] left-6 flex flex-col gap-8">
-                <h1 className="font-bold text-[28px] tracking-[2px] ">
-                  ZX7 SPEAKER
-                </h1>
-                <button className="w-[160px] h-[48px] border-2 border-[#000000] text-[13px] font-bold">
+          <div className="relative">
+            <div className="relative w-full pb-8 ">
+              <div className=" justify-between flex">
+                <div className="absolute top-[101px] left-6 flex flex-col gap-8">
+                  <h1 className="font-bold text-[28px] tracking-[2px] ">
+                    ZX7 SPEAKER
+                  </h1>
+                  <button className="w-[160px] h-[48px] border-2 border-[#000000] text-[13px] font-bold">
+                    SEE PRODUCT
+                  </button>
+                </div>
+                <img
+                  src={secondSpeaker}
+                  className="min-h-[320px] w-full max-h-[400px] rounded-md "
+                  alt=""
+                />
+              </div>
+            </div>
+            <div className="flex flex-col gap-6 rounded-md pb-[120px]">
+              <img src={earphones} className="rounded-md" alt="" />
+              <div className="bg-[#F1F1F1] rounded-lg w-full flex-col flex  gap-8 pt-[41px] pb-[41px] pl-6">
+                <h1 className="text-[28px] font-bold">YX1 EARPHONES</h1>
+                <button className="w-[160px] h-[48px] border-2 border-[#000000] font-bold text-[13px] tracking-[1px]">
                   SEE PRODUCT
                 </button>
               </div>
-              <img
-                src={secondSpeaker}
-                className="min-h-[320px] w-full max-h-[400px] rounded-md "
-                alt=""
-              />
-            </div>
-          </div>
-          <div className="flex flex-col gap-6 rounded-md pb-[120px]">
-            <img src={earphones} className="rounded-md" alt="" />
-            <div className="bg-[#F1F1F1] rounded-lg w-full flex-col flex  gap-8 pt-[41px] pb-[41px] pl-6">
-              <h1 className="text-[28px] font-bold">YX1 EARPHONES</h1>
-              <button className="w-[160px] h-[48px] border-2 border-[#000000] font-bold text-[13px] tracking-[1px]">
-                SEE PRODUCT
-              </button>
             </div>
           </div>
         </div>
