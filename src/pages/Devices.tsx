@@ -1,5 +1,5 @@
+import { Link } from "react-router-dom";
 import data from "../../public/data.json";
-
 interface DevicesProps {
   value: string;
 }
@@ -24,10 +24,34 @@ export default function Devices(props: DevicesProps) {
             : ""}
         </h1>
       </div>
-      <div className="pb-[120px] pt-[64px] pl-6 pr-6">
-        {filteredData.map((e) => (
-          <div key={e.id} className="">
-            <img src={e.categoryImage.mobile} alt="" />
+      <div className="pb-[120px] pt-[64px] pl-6 pr-6 flex flex-col justify-center items-center gap-[120px]">
+        {filteredData.map((item) => (
+          <div key={item.id} className="">
+            <img src={item.categoryImage.mobile} alt="" />
+            <div className="flex justify-center pt-8 flex-col items-center gap-6">
+              {item.new == true && (
+                <p className="text-[#D87D4A] text-[14px] tracking-[10px]">
+                  {" "}
+                  {item.new == true ? "NEW PRODUCT" : ""}
+                </p>
+              )}
+              <h1 className="text-[#000000] text-[28px] font-bold text-center">
+                {item.name}
+              </h1>
+              <p className="font-medium text-[15px] leading-[25px] text-center text-[#B3B3B3]">
+                {item.description}
+              </p>
+              <Link to={'/product'}>
+                <button
+                  className="mt-[8px] bg-[#D87D4A] w-[168px] h-[48px] m-auto text-center text-[13px] text-white font-bold"
+                  onClick={() =>
+                    localStorage.setItem("product name", `${item.name}`)
+                  }
+                >
+                  SEE PRODUCT
+                </button>
+              </Link>
+            </div>
           </div>
         ))}
       </div>
