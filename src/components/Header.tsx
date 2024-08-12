@@ -3,7 +3,7 @@ import HeadPhonesImg from "../assets/menu/headphones.svg";
 import speakersImg from "../assets/menu/speakers.svg";
 import earphonesImg from "../assets/menu/earphones.svg";
 import CartImg from "../assets/cart/CartIcon.svg";
-
+import Cart from "./Cart";
 export default function Header() {
   const [mobileNav, toggleMobileNav] = useCycle(false, true);
   return (

@@ -2,25 +2,32 @@ import { Link } from "react-router-dom";
 import data from "../../public/data.json";
 import { useState } from "react";
 export default function Product() {
-  console.log(data);
   const productName = localStorage.getItem("product name");
-  console.log(productName);
   const filteredData = data.filter((item) => {
     return item.name === productName;
   });
-  console.log(filteredData);
   const [count, setCount] = useState(0);
 
-  const chosenProduct = {
-    name: productName,
-    total: count,
-  };
-  const stringifiedObj = JSON.stringify(chosenProduct);
-  const stringifiedName = JSON.stringify(productName);
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  let CartFunc = () => {
-    localStorage.setItem(stringifiedName, stringifiedObj);
+  const CartFunc = () => {
+    const productIndex = cart.findIndex(
+      (item: any) => item.productName === productName
+    );
+
+    if (productIndex > 0) {
+      cart[productIndex].total = count;
+    } else {
+      const chosenProduct = {
+        productName: productName,
+        total: count,
+      };
+      cart.push(chosenProduct);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
   };
+
   return (
     <div className="flex flex-col pt-4 pl-6 pr-6">
       <div>
