@@ -11,23 +11,36 @@ export default function Product() {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   const CartFunc = () => {
-    const productIndex = cart.findIndex(
-      (item: any) => item.productName === productName
-    );
+    if (count > 0) {
+      const productIndex = cart.findIndex(
+        (item) => item.productName === productName
+      );
 
-    if (productIndex > 0) {
-      cart[productIndex].total = count;
+      const productImg = filteredData.find((item) => item.image)?.image;
+
+      if (productIndex >= 0) {
+        cart[productIndex].total = count;
+      } else {
+        const chosenProduct = {
+          productName: productName,
+          total: count,
+          img: productImg,
+        };
+        cart.push(chosenProduct);
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
     } else {
-      const chosenProduct = {
-        productName: productName,
-        total: count,
-      };
-      cart.push(chosenProduct);
+      const productIndex = cart.findIndex(
+        (item) => item.productName === productName
+      );
+
+      if (productIndex >= 0) {
+        cart.splice(productIndex, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }
     }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
   };
-
   return (
     <div className="flex flex-col pt-4 pl-6 pr-6">
       <div>

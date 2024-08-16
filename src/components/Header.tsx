@@ -4,8 +4,11 @@ import speakersImg from "../assets/menu/speakers.svg";
 import earphonesImg from "../assets/menu/earphones.svg";
 import CartImg from "../assets/cart/CartIcon.svg";
 import Cart from "./Cart";
+import { useState } from "react";
 export default function Header() {
   const [mobileNav, toggleMobileNav] = useCycle(false, true);
+  const [cartIsOpen, setCartIsOpen] = useState(false);
+  console.log(cartIsOpen);
   return (
     <>
       <div className="bg-black h-[90px] w-full flex items-center justify-between pr-6 border-b border-[#979797] border-opacity-[0.2]">
@@ -100,7 +103,10 @@ export default function Header() {
           )}
         </nav>
         <h1 className="text-[25px] font-extrabold text-white">audiophile</h1>
-        <img src={CartImg} />
+        <img src={CartImg} onClick={() => setCartIsOpen(!cartIsOpen)} />
+      </div>
+      <div className="m-auto flex  justify-center">
+        {cartIsOpen === true ? <Cart /> : ""}
       </div>
     </>
   );
