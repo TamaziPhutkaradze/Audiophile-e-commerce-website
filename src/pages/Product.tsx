@@ -1,6 +1,24 @@
 import { Link } from "react-router-dom";
 import data from "../../public/data.json";
 import { useState } from "react";
+
+interface types {
+  id: number;
+  slug: string;
+  name: string;
+  image: {
+      mobile: string;
+      tablet: string;
+      desktop: string;
+  };
+  category: string;
+  categoryImage: {
+      mobile: string;
+      tablet: string;
+      desktop: string;
+  };
+  new: boolean;
+}
 export default function Product() {
   const productName = localStorage.getItem("product name");
   const filteredData = data.filter((item) => {
@@ -13,34 +31,36 @@ export default function Product() {
   const CartFunc = () => {
     if (count > 0) {
       const productIndex = cart.findIndex(
-        (item) => item.productName === productName
+        (item :types) => item.productName === productName
       );
-
+  
       const productImg = filteredData.find((item) => item.image)?.image;
-
+      const othersObj = filteredData.find((item) => item.others)?.others;
       if (productIndex >= 0) {
-        cart[productIndex].total = count;
+        cart[productIndex].total = count; 
       } else {
         const chosenProduct = {
           productName: productName,
           total: count,
           img: productImg,
+          othersObj: othersObj,
         };
         cart.push(chosenProduct);
       }
-
+  
       localStorage.setItem("cart", JSON.stringify(cart));
     } else {
       const productIndex = cart.findIndex(
         (item) => item.productName === productName
       );
-
+  
       if (productIndex >= 0) {
         cart.splice(productIndex, 1);
         localStorage.setItem("cart", JSON.stringify(cart));
       }
     }
   };
+  
   return (
     <div className="flex flex-col pt-4 pl-6 pr-6">
       <div>
