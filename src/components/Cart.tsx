@@ -23,16 +23,18 @@ export default function Cart() {
   const [cartObj, setCartObj] = useState<cartTypes[]>(
     JSON.parse(localStorage.getItem("cart") || "[]")
   );
-  const objLength = cartObj && cartObj.length;
-  function updateTotal(productName: string, change: null | number) {
+  const objLength = cartObj ? cartObj.length : 0;
+  function updateTotal(productName: string, change: number) {
     let cart: cartTypes[] = JSON.parse(localStorage.getItem("cart") || "[]");
 
-    const updatedCart = cart.map((item: cartTypes) => {
-      if (item.productName === productName) {
-        return { ...item, total: Math.max(0, item.total + change) };
-      }
-      return item;
-    });
+    const updatedCart = cart
+      .map((item: cartTypes) => {
+        if (item.productName === productName) {
+          return { ...item, total: Math.max(0, item.total + change) };
+        }
+        return item;
+      })
+      .filter((item: cartTypes) => item.total > 0);
 
     localStorage.setItem("cart", JSON.stringify(updatedCart));
 
@@ -40,7 +42,7 @@ export default function Cart() {
   }
   let number = 0;
   //total functionality
-  const totalCost = cartObj.map((item: any) => {
+  const totalCost = cartObj.map((item: cartTypes) => {
     return item.total * item.price;
   });
   function cartTotal() {
@@ -51,6 +53,11 @@ export default function Cart() {
     return number;
   }
   console.log(cartTotal());
+  let RemoveAll = () => {
+    localStorage.removeItem("cart");
+    setCartObj([]);
+  };
+
   return (
     <>
       <div className="h-[488px] w-[327px] absolute right-[25px] m-auto bg-[#FFFFFF] rounded-lg">
@@ -59,11 +66,13 @@ export default function Cart() {
             <p className="text-black font-bold text-[18px] tracking-[1.29]">
               Cart (<span>{objLength}</span>)
             </p>
-            <button className="text-[#979797]">Remove all</button>
+            <button className="text-[#979797]" onClick={RemoveAll}>
+              Remove all
+            </button>
           </div>
           <div className="flex flex-col gap-6 pt-[31px]">
             {objLength > 0
-              ? cartObj.map((item: any, index: number) => (
+              ? cartObj.map((item: cartTypes, index: number) => (
                   <div key={index} className="flex gap-4 items-center">
                     <img
                       className="w-[64px] h-[64px] rounded-md"
@@ -72,7 +81,7 @@ export default function Cart() {
                     <div className="justify-between flex w-full">
                       <div className="flex flex-col">
                         <h1 className="whitespace-nowrap font-bold leading-[25px] text-[15px]">
-                          {item.othersObj[0].name}
+                          {item.othersObj[0].slug}
                         </h1>
                         <p className="font-bold leading-[25px] text-[14px] text-[#979797]">{`${item.price}$`}</p>
                       </div>
@@ -97,8 +106,19 @@ export default function Cart() {
               : ""}
             {objLength > 0 ? (
               <div className="flex justify-between">
-                <p>TOTAL</p> <span> {`${cartTotal()}$`}</span>
+                <p className="text-[#979797]">TOTAL</p>{" "}
+                <span className="font-bold text-[18px]">
+                  {" "}
+                  {`${cartTotal()}$`}
+                </span>
               </div>
+            ) : (
+              ""
+            )}
+            {objLength > 0 ? (
+              <button className="text-white font-bold bg-[#D87D4A] w-[271px] h-[48px] ">
+                CHECKOUT
+              </button>
             ) : (
               ""
             )}
