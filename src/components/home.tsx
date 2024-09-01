@@ -5,11 +5,8 @@ import bigSpeakersImg from "../assets/home/mobile/image-speaker-zx9.png";
 import secondSpeaker from "../assets/home/mobile/image-speaker-zx7.jpg";
 import earphones from "../assets/home/mobile/image-earphones-yx1.jpg";
 import { Link } from "react-router-dom";
-interface HomeProps {
-  setValue: (value: string) => void;
-  value: string;
-}
-export default function Home(props: HomeProps) {
+
+export default function Home() {
   return (
     <>
       <main>
@@ -80,7 +77,7 @@ export default function Home(props: HomeProps) {
                     localStorage.setItem("device name", "earphones")
                   }
                 >
-                  Shop <span className="text-red-500">&#62;</span>  
+                  Shop <span className="text-red-500">&#62;</span>
                 </button>
               </Link>
             </div>

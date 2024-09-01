@@ -8,13 +8,13 @@ import Product from "./pages/Product";
 function App() {
   const location = useLocation();
   const locationPath = location.pathname;
-  const [value, setValue] = useState<string>("");
+  const [value, _setValue] = useState<string>("");
   console.log(value);
   return (
     <>
       <Header />
       <Routes>
-        <Route element={<Home setValue={setValue} value={value} />} path="/" />
+        <Route element={<Home />} path="/" />
         <Route element={<Devices value={value} />} path="/Device" />
         <Route element={<Product />} path="/product" />
       </Routes>

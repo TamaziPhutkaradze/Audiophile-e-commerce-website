@@ -47,7 +47,7 @@ export default function Product() {
   const [count, setCount] = useState(0);
 
   let cart: Types[] = JSON.parse(localStorage.getItem("cart") || "[]");
-console.log(cart)
+  console.log(cart)
   const CartFunc = () => {
     if (count > 0) {
       const productIndex = cart.findIndex(
@@ -82,7 +82,10 @@ console.log(cart)
       }
     }
   };
+  const ScrollToTop = () => {
+    document.documentElement.scrollTop = 0
 
+  };
   return (
     <div className="flex flex-col pt-4 pl-6 pr-6">
       <div>
@@ -168,14 +171,15 @@ console.log(cart)
                   you may also like
                 </h1>{" "}
                 <div className="flex flex-col gap-[56px]">
-                  {item.others.map((e) => (
+                  {item.others.map((e: any) => (
                     <div className="flex flex-col gap-8 items-center">
                       <img src={e.image.mobile} />
                       <h1 className="font-bold text-6 tracking-[1.71]">{e.name}</h1>
-                      <button onClick={() =>{
-                    localStorage.setItem("product name", `${e.name}`)
-                    location.reload() 
-                    }} className="bg-[#D87D4A] w-[160px] h-[48px] text-center text-white font-bold">
+                      <button onClick={() => {
+                        localStorage.setItem("product name", `${e.ProductName}`)
+                        location.reload()
+                        ScrollToTop()
+                      }} className="bg-[#D87D4A] w-[160px] h-[48px] text-center text-white font-bold">
                         SEE PRODUCT
                       </button>
                     </div>
