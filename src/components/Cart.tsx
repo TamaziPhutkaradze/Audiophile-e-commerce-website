@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 interface cartTypes {
   img: {
     mobile: string;
@@ -73,36 +73,36 @@ export default function Cart() {
           <div className="flex flex-col gap-6 pt-[31px]">
             {objLength > 0
               ? cartObj.map((item: cartTypes, index: number) => (
-                  <div key={index} className="flex gap-4 items-center">
-                    <img
-                      className="w-[64px] h-[64px] rounded-md"
-                      src={item.img.mobile}
-                    />
-                    <div className="justify-between flex w-full">
-                      <div className="flex flex-col">
-                        <h1 className="whitespace-nowrap font-bold leading-[25px] text-[15px]">
-                          {item.othersObj[0].slug}
-                        </h1>
-                        <p className="font-bold leading-[25px] text-[14px] text-[#979797]">{`${item.price}$`}</p>
-                      </div>
-                      <div className="w-[96px] h-[32px] bg-[#F1F1F1] pt-[15px] pb-[15px] pr-[15px] pl-[15px] justify-between items-center flex ">
-                        <button
-                          className="text-[#979797]"
-                          onClick={() => updateTotal(item.productName, -1)}
-                        >
-                          -
-                        </button>
-                        <span className="font-bold">{item.total}</span>
-                        <button
-                          className="text-[#979797]"
-                          onClick={() => updateTotal(item.productName, 1)}
-                        >
-                          +
-                        </button>
-                      </div>
+                <div key={index} className="flex gap-4 items-center">
+                  <img
+                    className="w-[64px] h-[64px] rounded-md"
+                    src={item.img.mobile}
+                  />
+                  <div className="justify-between flex w-full">
+                    <div className="flex flex-col">
+                      <h1 className="whitespace-nowrap font-bold leading-[25px] text-[15px]">
+                        {item.othersObj[0].slug}
+                      </h1>
+                      <p className="font-bold leading-[25px] text-[14px] text-[#979797]">{`${item.price}$`}</p>
+                    </div>
+                    <div className="w-[96px] h-[32px] bg-[#F1F1F1] pt-[15px] pb-[15px] pr-[15px] pl-[15px] justify-between items-center flex ">
+                      <button
+                        className="text-[#979797]"
+                        onClick={() => updateTotal(item.productName, -1)}
+                      >
+                        -
+                      </button>
+                      <span className="font-bold">{item.total}</span>
+                      <button
+                        className="text-[#979797]"
+                        onClick={() => updateTotal(item.productName, 1)}
+                      >
+                        +
+                      </button>
                     </div>
                   </div>
-                ))
+                </div>
+              ))
               : ""}
             {objLength > 0 ? (
               <div className="flex justify-between">
@@ -116,9 +116,11 @@ export default function Cart() {
               ""
             )}
             {objLength > 0 ? (
-              <button className="text-white font-bold bg-[#D87D4A] w-[271px] h-[48px] ">
-                CHECKOUT
-              </button>
+              <Link to={'/checkout'}>
+                <button className="text-white font-bold bg-[#D87D4A] w-[271px] h-[48px] ">
+                  CHECKOUT
+                </button>
+              </Link>
             ) : (
               ""
             )}
