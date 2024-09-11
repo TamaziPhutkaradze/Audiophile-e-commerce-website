@@ -5,11 +5,13 @@ import instagram from "../assets/socialSites/instagram.svg";
 import HeadPhonesImg from "../assets/menu/headphones.svg";
 import speakersImg from "../assets/menu/speakers.svg";
 import earphonesImg from "../assets/menu/earphones.svg";
+import { useLocation } from "react-router-dom";
 export default function Footer(props: { locationPath: string }) {
+  const location = useLocation()
   return (
     <>
       {" "}
-      {props.locationPath !== "/" && (
+      {props.locationPath !== "/" && location.pathname !== "/checkout" && (
         <div className="pt-[80px] pl-[24px] pr-[24px]  pb-[35px] flex flex-col gap-[68px] overflow-y-auto z-20 ">
           <div className="bg-[#F1F1F1] rounded-lg w-full flex flex-col items-center justify-center">
             <img
@@ -44,7 +46,7 @@ export default function Footer(props: { locationPath: string }) {
           </div>
         </div>
       )}
-      <div className="pr-6 pl-6 flex flex-col gap-[40px]">
+      {location.pathname !== "/checkout" && <div className="pr-6 pl-6 flex flex-col gap-[40px]">
         <img src={FooterImg} className="rounded-md" />
         <div className="flex flex-col gap-8 text-center">
           {" "}
@@ -61,7 +63,7 @@ export default function Footer(props: { locationPath: string }) {
             make Audiophile the best place to buy your portable audio equipment.
           </p>
         </div>
-      </div>
+      </div>}
       <div className="bg-[#101010] mt-[120px] pb-[38px]">
         <div className="flex flex-col gap-[48px] items-center pt-[48px]">
           <h1 className="text-white font-extrabold text-[28px]">audiophile</h1>

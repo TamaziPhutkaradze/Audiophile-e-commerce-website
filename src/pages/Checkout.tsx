@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 interface cartTypes {
     img: {
         mobile: string;
@@ -18,7 +19,9 @@ interface cartTypes {
     productName: string;
     total: number;
 }
+
 export default function Checkout() {
+    const navigate = useNavigate();
     const [cartObj, _setCartObj] = useState<cartTypes[]>(
         JSON.parse(localStorage.getItem("cart") || "[]")
     );
@@ -36,10 +39,12 @@ export default function Checkout() {
     }
     console.log(cartObj)
 
-
+    const goBack = () => {
+        navigate(-1);
+    };
     return (
         <div className=''>
-            <div className='pt-4 pl-6'><p className='font-medium text-[15px] leading-[25px] text-[#979797]'>Go Back</p></div>
+            <div className='pt-4 pl-6' onClick={goBack}><p className='font-medium text-[15px] leading-[25px] text-[#979797]'>Go Back</p></div>
             <div className='mt-6 ml-6 mr-6 pl-6 pt-6 pr-6 flex flex-col gap-8'>
                 <h1 className='font-bold text-[28px] tracking-[1px]'>CHECKOUT</h1>
                 <div>
