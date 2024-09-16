@@ -6,10 +6,15 @@ import secondSpeaker from "../assets/home/mobile/image-speaker-zx7.jpg";
 import earphones from "../assets/home/mobile/image-earphones-yx1.jpg";
 import { Link } from "react-router-dom";
 
-export default function Home() {
+export default function Home(props: {
+  mobileNav: boolean
+  cartIsOpen: boolean
+}) {
+
   return (
     <>
-      <main>
+      <main >
+        {props.mobileNav || props.cartIsOpen && <div className="fixed top-0 left-0 w-full h-full transition-[max-height 0.5s ease-in-out] opacity-[0.5] bg-black z-[-1]"></div>}
         <div className="z-[-10] relative">
           <div className="bg-[url(./assets/home/mobile/image-header.jpg)] bg-cover bg-center  h-[600px]"></div>
 
@@ -32,7 +37,7 @@ export default function Home() {
           </div>
         </div>
         <div className="pt-[80px] pl-[24px] pr-[24px]  pb-[35px] flex flex-col gap-[68px] overflow-y-auto z-20 ">
-          <div className="bg-[#F1F1F1] rounded-lg w-full flex flex-col items-center justify-center">
+          <div className="bg-[#F1F1F1] rounded-lg z-[-5] w-full flex flex-col items-center justify-center">
             <img
               src={HeadPhonesImg}
               alt=""
@@ -52,7 +57,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="bg-[#F1F1F1] rounded-lg w-full flex-col   flex items-center justify-center ">
+          <div className="bg-[#F1F1F1] rounded-lg z-[-5] w-full flex-col   flex items-center justify-center ">
             <img src={speakersImg} alt="" className="relative bottom-[52px]" />
             <div className="flex flex-col gap-[17px] pb-3 text-center">
               <p>SPEAKERS</p>
@@ -67,7 +72,7 @@ export default function Home() {
               </Link>
             </div>
           </div>{" "}
-          <div className="bg-[#F1F1F1] rounded-lg  flex-col   w-full  flex items-center justify-center ">
+          <div className="bg-[#F1F1F1] rounded-lg z-[-5]  flex-col   w-full  flex items-center justify-center ">
             <img src={earphonesImg} alt="" className="relative bottom-[52px]" />
             <div className="flex flex-col gap-[17px] pb-3 text-center">
               <p>EARPHONES</p>
@@ -127,7 +132,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-6 rounded-md pb-[120px]">
               <img src={earphones} className="rounded-md" alt="" />
-              <div className="bg-[#F1F1F1] rounded-lg w-full flex-col flex  gap-8 pt-[41px] pb-[41px] pl-6">
+              <div className="bg-[#F1F1F1] rounded-lg z-[-5] w-full flex-col flex  gap-8 pt-[41px] pb-[41px] pl-6">
                 <h1 className="text-[28px] font-bold">YX1 EARPHONES</h1>
                 <button className="w-[160px] h-[48px] border-2 border-[#000000] font-bold text-[13px] tracking-[1px]">
                   SEE PRODUCT
