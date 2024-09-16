@@ -14,7 +14,7 @@ export default function Home(props: {
   return (
     <>
       <main >
-        {props.mobileNav || props.cartIsOpen && <div className="fixed top-0 left-0 w-full h-full transition-[max-height 0.5s ease-in-out] opacity-[0.5] bg-black z-[-1]"></div>}
+        {props.mobileNav === true || props.cartIsOpen ? <div className="fixed top-0 left-0 w-full h-full transition-[max-height 0.5s ease-in-out] opacity-[0.5] bg-black z-[-1]"></div> : ''}
         <div className="z-[-10] relative">
           <div className="bg-[url(./assets/home/mobile/image-header.jpg)] bg-cover bg-center  h-[600px]"></div>
 
@@ -36,53 +36,56 @@ export default function Home(props: {
             </div>
           </div>
         </div>
-        <div className="pt-[80px] pl-[24px] pr-[24px]  pb-[35px] flex flex-col gap-[68px] overflow-y-auto z-20 ">
-          <div className="bg-[#F1F1F1] rounded-lg z-[-5] w-full flex flex-col items-center justify-center">
+        <div className="pt-[80px] pl-[24px] pr-[24px]  pb-[35px] flex flex-col gap-[68px] overflow-y-auto z-[18] sticky  ">
+          <div className={`${props.cartIsOpen || props.mobileNav ? "" : ` bg-[#F1F1F1]`}" rounded-lg z-[-5] w-full flex-col flex items-center justify-center"`}>
             <img
               src={HeadPhonesImg}
               alt=""
               className="relative bottom-[52px]"
             />
             <div className="flex flex-col gap-[17px] pb-3 text-center">
-              <p>HEADPHONES</p>
+              <p className="text-[15px] font-bold">HEADPHONES</p>
               <Link to="/Device">
                 {" "}
                 <button
                   onClick={() =>
                     localStorage.setItem("device name", "headphones")
                   }
+                  className="text-[13px] tracking-[1px] font-bold text-[#979797]"
                 >
-                  Shop <span className="text-red-500">&#62;</span>
+                  SHOP <span className="text-red-500">&#62;</span>
                 </button>
               </Link>
             </div>
           </div>
-          <div className="bg-[#F1F1F1] rounded-lg z-[-5] w-full flex-col   flex items-center justify-center ">
+          <div className={`${props.cartIsOpen || props.mobileNav ? "" : ` bg-[#F1F1F1]`}" rounded-lg z-[-5] w-full flex-col flex items-center justify-center"`}>
             <img src={speakersImg} alt="" className="relative bottom-[52px]" />
             <div className="flex flex-col gap-[17px] pb-3 text-center">
-              <p>SPEAKERS</p>
+              <p className="text-[15px] font-bold">SPEAKERS</p>
               <Link to="/Device">
                 <button
                   onClick={() =>
                     localStorage.setItem("device name", "speakers")
                   }
+                  className="text-[13px] tracking-[1px] font-bold text-[#979797]"
                 >
-                  Shop <span className="text-red-500">&#62;</span>
+                  SHOP <span className="text-red-500">&#62;</span>
                 </button>
               </Link>
             </div>
           </div>{" "}
-          <div className="bg-[#F1F1F1] rounded-lg z-[-5]  flex-col   w-full  flex items-center justify-center ">
+          <div className={`${props.cartIsOpen || props.mobileNav ? "" : ` bg-[#F1F1F1]`}" rounded-lg z-[-5] w-full flex-col flex items-center justify-center"`}>
             <img src={earphonesImg} alt="" className="relative bottom-[52px]" />
             <div className="flex flex-col gap-[17px] pb-3 text-center">
-              <p>EARPHONES</p>
+              <p className="text-[15px] font-bold">EARPHONES</p>
               <Link to="/Device">
                 <button
                   onClick={() =>
                     localStorage.setItem("device name", "earphones")
                   }
+                  className="text-[13px] tracking-[1px] font-bold text-[#979797]"
                 >
-                  Shop <span className="text-red-500">&#62;</span>
+                  SHOP <span className="text-red-500">&#62;</span>
                 </button>
               </Link>
             </div>
@@ -141,7 +144,7 @@ export default function Home(props: {
             </div>
           </div>
         </div>
-      </main>
+      </main >
     </>
   );
 }

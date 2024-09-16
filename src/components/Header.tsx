@@ -5,6 +5,7 @@ import earphonesImg from "../assets/menu/earphones.svg";
 import CartImg from "../assets/cart/CartIcon.svg";
 import Cart from "./Cart";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Header(props: {
   mobileNav: boolean
@@ -81,10 +82,12 @@ export default function Header(props: {
                     className="relative bottom-[52px]"
                   />
                   <div className="flex flex-col gap-[17px] pb-3 text-center">
-                    <p>HEADPHONES</p>
-                    <p>
-                      Shop <span className="text-red-500">&#62;</span>
-                    </p>
+                    <p className="text-[15px] font-bold">HEADPHONES</p>
+                    <Link to="/Device"><p className="text-[13px] font-bold text-[#979797]" onClick={() =>
+                      localStorage.setItem("device name", "headphones")
+                    }>
+                      SHOP <span className="text-red-500">&#62;</span>
+                    </p> </Link>
                   </div>
                 </div>
                 <div className="bg-[#F1F1F1] rounded-lg w-full flex-col   flex items-center justify-center ">
@@ -94,10 +97,12 @@ export default function Header(props: {
                     className="relative bottom-[52px]"
                   />
                   <div className="flex flex-col gap-[17px] pb-3 text-center">
-                    <p>SPEAKERS</p>
-                    <p>
-                      Shop <span className="text-red-500">&#62;</span>
-                    </p>
+                    <p className="text-[15px] font-bold">SPEAKERS</p>
+                    <Link to="/Device"><p className="text-[13px] font-bold text-[#979797]" onClick={() =>
+                      localStorage.setItem("device name", "speakers")
+                    }>
+                      SHOP <span className="text-red-500">&#62;</span>
+                    </p> </Link>
                   </div>
                 </div>{" "}
                 <div className="bg-[#F1F1F1] rounded-lg  flex-col   w-full  flex items-center justify-center ">
@@ -107,10 +112,12 @@ export default function Header(props: {
                     className="relative bottom-[52px]"
                   />
                   <div className="flex flex-col gap-[17px] pb-3 text-center">
-                    <p>EARPHONES</p>
-                    <p>
-                      Shop <span className="text-red-500">&#62;</span>
-                    </p>
+                    <p className="text-[15px] font-bold">EARPHONES</p>
+                    <Link to="/Device"><p className="text-[13px] font-bold text-[#979797] " onClick={() =>
+                      localStorage.setItem("device name", "earphones")
+                    }>
+                      SHOP <span className="text-red-500">&#62;</span>
+                    </p> </Link>
                   </div>
                 </div>
               </div>
