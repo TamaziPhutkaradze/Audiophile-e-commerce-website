@@ -27,7 +27,6 @@ export default function Checkout() {
         handleSubmit,
         formState: { errors }, } = useForm()
     const navigate = useNavigate();
-    console.log(errors.zip, 'input value')
     console.log(onsubmit)
     const [cartObj, _setCartObj] = useState<cartTypes[]>(
         JSON.parse(localStorage.getItem("cart") || "[]")
@@ -64,17 +63,24 @@ export default function Checkout() {
                         <form className='flex flex-col gap-6 pt-4' >
                             <label className='flex flex-col gap-[9px] '>
                                 <p>Name</p>
-                                <input type="text" placeholder='Alexei Ward' className='w-[full] h-[56px] border-2 border-[#CFCFCF] rounded-lg'{...register('name', { required: "can't be empty" })} name="name" />
-
+                                <input type="text" placeholder='Alexei Ward' className={`w-[full] h-[56px] border-2 border-[#CFCFCF] rounded-lg ${errors.name ? 'border-red-500' : 'border-[#CFCFCF]'}`}{...register('name', { required: "can't be empty" })} name="name" />
+                                {errors.name && <p className="text-red-500">{errors.name.message as string}</p>}
                             </label>
                             <label className='flex flex-col gap-[9px] '>
                                 <p>Email Address</p>
-                                <input type="text" placeholder='alexei@mail.com' className='w-[full] h-[56px] border-2 border-[#CFCFCF] rounded-lg'{...register('email', { required: "can't be empty" })} name="email" />
+                                <input type="text" placeholder='alexei@mail.com' className={`w-[full] h-[56px] border-2 border-[#CFCFCF] rounded-lg ${errors.email ? 'border-red-500' : 'border-[#CFCFCF]'}`}{...register('email', {
+                                    required: "can't be empty", pattern: {
+                                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                                        message: "Invalid email format"
+                                    }
+                                })} name="email" />
+                                {errors.email && <p className="text-red-500">{errors.email.message as string}</p>}
 
                             </label>
                             <label className='flex flex-col gap-[9px] '>
                                 <p>Phone Number</p>
-                                <input type="tel" placeholder='+1 202-555-0136' className='w-[full] h-[56px] border-2 border-[#CFCFCF] rounded-lg' {...register('number', { required: "can't be empty" })} name="number" />
+                                <input type="number" placeholder='+1 202-555-0136' className={`w-[full] h-[56px] border-2 border-[#CFCFCF] rounded-lg ${errors.number ? 'border-red-500' : 'border-[#CFCFCF]'}`} {...register('number', { required: "can't be empty" })} name="number" />
+                                {errors.number && <p className="text-red-500">{errors.number.message as string}</p>}
 
                             </label>
                         </form>
@@ -84,28 +90,40 @@ export default function Checkout() {
                         <div className='flex flex-col gap-6 pt-4'>
                             <label className='flex flex-col gap-[9px] '>
                                 <p>Your Address</p>
-                                <input type="text" placeholder='1137 Williams Avenue' className='w-[full] h-[56px] border-2 border-[#CFCFCF] rounded-lg'{...register('address', { required: "cant't be empty" })} name="address" />
+                                <input type="text" placeholder='1137 Williams Avenue' className={`w-[full] h-[56px] border-2 border-[#CFCFCF] rounded-lg ${errors.address ? 'border-red-500' : 'border-[#CFCFCF]'}`}{...register('address', { required: "cant't be empty" })} name="address" />
+                                {errors.address && <p className="text-red-500">{errors.address.message as string}</p>}
 
                             </label>
                             <label className='flex flex-col gap-[9px] '>
                                 <p>ZIP Code</p>
-                                <input type="number" placeholder='10001' className='w-[full] h-[56px] border-2 border-[#CFCFCF] rounded-lg' {...register('zip', {
-                                    required: "ZIP Code is required",
-                                    pattern: {
-                                        value: /^[0-9]{5}(?:-[0-9]{4})?$/,
-                                        message: "Invalid ZIP Code format"
-                                    }
-                                })} name="zipCode" />
+                                <input
+                                    type="number"
+                                    placeholder="10001"
+                                    className={`w-full h-[56px] border-2 ${errors.zip ? 'border-red-500' : 'border-[#CFCFCF]'} rounded-lg`}
+                                    {...register('zip', {
+                                        required: "ZIP Code is required",
+                                        pattern: {
+                                            value: /^[0-9]{5}(?:-[0-9]{4})?$/,
+                                            message: "Invalid ZIP Code format"
+                                        }
+                                    })}
+                                    name="zip"
+                                />
+
+                                {errors.zip && <p className="text-red-500">{errors.zip.message as string}</p>}
 
                             </label>
                             <label className='flex flex-col gap-[9px] '>
                                 <p>City</p>
-                                <input type="text" placeholder='New York' className='w-[full] h-[56px] border-2 border-[#CFCFCF] rounded-lg' {...register("city", { required: "can't be empty" })} name="city" />
+                                <input type="text" placeholder='New York' className={`w-[full] h-[56px] border-2 border-[#CFCFCF] rounded-lg ${errors.city ? 'border-red-500' : 'border-[#CFCFCF]'} rounded-lg`}
+                                    {...register("city", { required: "can't be empty" })} name="city" />
+                                {errors.city && <p className="text-red-500">{errors.city.message as string}</p>}
 
                             </label>
                             <label className='flex flex-col gap-[9px] '>
                                 <p>Country</p>
-                                <input type="text" placeholder='United States' className='w-[full] h-[56px] border-2 border-[#CFCFCF] rounded-lg'{...register("country", { required: "can't be empty" })} name="country" />
+                                <input type="text" placeholder='United States' className={`w-[full] h-[56px] border-2 border-[#CFCFCF] rounded-lg ${errors.country ? 'border-red-500' : 'border-[#CFCFCF]'} rounded-lg`}{...register("country", { required: "can't be empty" })} name="country" />
+                                {errors.country && <p className="text-red-500">{errors.country.message as string}</p>}
 
                             </label>
                         </div>
@@ -127,12 +145,14 @@ export default function Checkout() {
                     <div className="flex flex-col gap-6">
                         <label className='flex flex-col gap-[9px] '>
                             <p>e-Money Number</p>
-                            <input type="number" placeholder='238521993' className='w-[full] h-[56px] border-2 border-[#CFCFCF] rounded-lg'{...register("e-moneyNUm", { required: "can't be empty" })} />
+                            <input type="number" placeholder='238521993' className={`w-[full] h-[56px] border-2 border-[#CFCFCF] rounded-lg ${errors.moneyNum ? 'border-red-500' : 'border-[#CFCFCF]'}`}{...register("moneyNum", { required: "can't be empty" })} />
+                            {errors.moneyNum && <p className="text-red-500">{errors.moneyNum.message as string}</p>}
 
                         </label>
                         <label className='flex flex-col gap-[9px] '>
                             <p>e-Money PIN</p>
-                            <input type="text" placeholder='6891' className='w-[full] h-[56px] border-2 border-[#CFCFCF] rounded-lg' {...register("e-moneyPin", { required: "can't be empty" })} />
+                            <input type="text" placeholder='6891' className={`w-[full] h-[56px] border-2 border-[#CFCFCF] rounded-lg ${errors.moneyPin ? 'border-red-500' : 'border-[#CFCFCF]'}`} {...register("moneyPin", { required: "can't be empty" })} />
+                            {errors.moneyPin && <p className="text-red-500">{errors.moneyPin.message as string}</p>}
 
                         </label>
                     </div>
